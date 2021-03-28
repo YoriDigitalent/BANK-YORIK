@@ -1,8 +1,17 @@
-version: '3.8'
+version: "2"
 services:
-    backend:
-        container_name: bankyorik
-        image: bankyorik:latest
-        stdin_open: true
-        ports:
-            - 8080 :8080
+  bankyorik:
+    container_name: bankyorik
+    image: bankyorik:latest
+    stdin_open: true
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
