@@ -12,7 +12,7 @@ WORKDIR /app
 RUN npm install
 
 # Expose API port to the outside
-EXPOSE 3004
+EXPOSE 8080
 
 # Launch application
 CMD ["npm","start"]

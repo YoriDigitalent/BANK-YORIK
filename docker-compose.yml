@@ -5,4 +5,4 @@ services:
         image: bankyorik:latest
         stdin_open: true
         ports:
-            - 3004:3004
+            - 8080 :8080
