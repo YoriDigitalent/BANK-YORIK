@@ -1,17 +1,41 @@
-version: "2"
+version: '3'
+
 services:
-  bankyorik:
+  bank:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bank:1.0
     container_name: bankyorik
-    image: bankyorik:latest
-    stdin_open: true
-    restart: always
-    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment: 
+      - PORT=$PORT
+      - MONGODB_URI=$MONGODB_URI
     ports:
       - "8080:8080"
-    links:
-      - mongo
-  mongo:
+    volumes:
+      - .:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    networks:
+      - app-network
+    command: ./wait-for.sh db:27017 -- /home/node/app/node_modules/.bin/nodemon app.js
+
+  db:
     container_name: mongo
     image: mongo
     ports:
       - "27017:27017"
+    env_file: .env
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+  node_modules:

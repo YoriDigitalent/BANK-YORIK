@@ -30,6 +30,6 @@ app.get('/', (req, res, next) => {
 
 app.use('/api', router);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log(`App listens to port ${process.env.PORT}`);
 });
