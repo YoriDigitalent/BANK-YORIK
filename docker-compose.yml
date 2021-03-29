@@ -8,10 +8,6 @@ services:
     image: bank:1.0
     container_name: bankyorik
     restart: unless-stopped
-    env_file: .env
-    environment: 
-      - PORT=$PORT
-      - MONGODB_URI=$MONGODB_URI
     ports:
       - "8080:8080"
     volumes:
@@ -26,7 +22,6 @@ services:
     image: mongo
     ports:
       - "27017:27017"
-    env_file: .env
     volumes:
       - dbdata:/data/db
     networks:
