@@ -6,7 +6,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 # Copy source code
-COPY ["package.json", "package-lock.json*", "./"]
+COPY ["package.json", "package-lock.json", "./"]
 
 # Install dependencies
 RUN npm install --production
@@ -15,4 +15,4 @@ RUN npm install --production
 COPY . .
 
 # Launch application
-CMD ["node","start.index.js"]
+CMD ["node","index.js"]
