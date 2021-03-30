@@ -1,18 +1,21 @@
 # Use node 4.4.5 LTS
 FROM node:4.4.5
-ENV NODE_ENV=production
+ENV LAST_UPDATED 20160605T165400
 
 # Change working directory
 WORKDIR /app
 
 # Copy source code
-COPY ["package.json", "package-lock.json", "./"]
+COPY ["package.json", "package-lock.json*", "./"]
 
 # Install dependencies
-RUN npm install --production
+RUN npm install 
 
 # Copy source code
 COPY . .
 
+# Expose API port to the outside
+EXPOSE 8080
+
 # Launch application
-CMD ["node","index.js"]
+CMD ["npm","run","start.dev"]
