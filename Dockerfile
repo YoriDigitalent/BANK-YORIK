@@ -1,12 +1,11 @@
-# Use node 4.4.5 LTS
-FROM node:4.4.5
-ENV LAST_UPDATED 20160605T165400
+# Use node 12
+FROM node:12
 
 # Change working directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Copy source code
-COPY ["package.json", "package-lock.json", "router.js", "database.js", "index.js", "./"]
+COPY ["package*.json", "./"]
 
 # Install dependencies
 RUN npm install 
