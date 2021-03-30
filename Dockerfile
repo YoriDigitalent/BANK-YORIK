@@ -6,7 +6,7 @@ ENV LAST_UPDATED 20160605T165400
 WORKDIR /app
 
 # Copy source code
-COPY ["package.json", "package-lock.json*", "./"]
+COPY ["package.json", "package-lock.json", "router.js", "database.js", "index.js", "./"]
 
 # Install dependencies
 RUN npm install 
@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 8080
 
 # Launch application
-CMD ["npm","start"]
+CMD ["node","index.js"]
