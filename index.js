@@ -1,6 +1,3 @@
-const dotenv = require ("dotenv");
-dotenv.config();
-
 const express = require ('express');
 const mongoose = require ('mongoose');
 const morgan = require ('morgan');
@@ -8,8 +5,9 @@ const router = require ("./router.js");
 
 const app = express();
 
+const MONGODB_URI = `mongodb://localhost:27017/nasabah?readPreference=primary&appname=MongoDB%20Compass&ssl=false`;
 // Connect to DB
-mongoose.connect(process.env.MONGODB_URI,
+mongoose.connect(MONGODB_URI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -29,7 +27,9 @@ app.get('/', (req, res, next) => {
 });
 
 app.use('/api', router);
+ 
+const PORT = process.env.POR || 8080;
 
-app.listen(process.env.PORT || 8080, () => {
-  console.log(`App listens to port ${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`App listens to port ${PORT}`);
 });
