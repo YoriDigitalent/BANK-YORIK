@@ -28,7 +28,7 @@ app.get('/', (req, res, next) => {
 
 app.use('/api', router);
  
-const PORT = process.env.POR || 8080;
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
   console.log(`App listens to port ${PORT}`);

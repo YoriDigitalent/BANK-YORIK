@@ -1,5 +1,5 @@
 const express = require ('express');
-const Customer = require ("./database.js");
+const Customers = require ("./database.js");
 const router = express.Router();
 
 //@desc   Create new Customer
@@ -16,7 +16,7 @@ router.post('/customers', async (req, res) => {
       noHP,
     } = req.body;
   
-    const customer = new Customer({
+    const customer = new Customers({
       noKTP,
       namaLengkap,
       alamat,
@@ -36,7 +36,7 @@ router.post('/customers', async (req, res) => {
 //@desc Get all customer
 //@route GET /api/customers
 router.get('/customers', async (req, res) => {
-  const customers = await Customer.find({});
+  const customers = await Customers.find({});
 
   if(customers) {
     res.json(customers)
@@ -50,7 +50,7 @@ router.get('/customers', async (req, res) => {
   //@desc Get a customer
   //@route GET /api/customers/:id
   router.get('/customers/:id', async (req, res) => {
-    const customer = await Customer.findById(req.params.id);
+    const customer = await Customers.findById(req.params.id);
 
     if(customer) {
       res.json(customer)
@@ -73,7 +73,7 @@ router.put('/customers/:id', async (req, res) => {
     noHP
   } = req.body;
 
-  const customer = await Customer.findById(req.params.id);
+  const customer = await Customers.findById(req.params.id);
 
   if (customer) {
     customer.noKTP = noKTP;
@@ -95,7 +95,7 @@ router.put('/customers/:id', async (req, res) => {
 //@desc Delete a customer
 //@route DELETE /api/customers/:id
 router.delete('/customers/:id', async (req, res) => {
-  const customer = await Customer.findById(req.params.id);
+  const customer = await Customers.findById(req.params.id);
 
   if(customer) {
     await customer.remove();
