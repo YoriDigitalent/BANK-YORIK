@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expose API port to the outside
-EXPOSE 8080
+EXPOSE 8008
 
 # Launch application
 CMD ["node","index.js"]
