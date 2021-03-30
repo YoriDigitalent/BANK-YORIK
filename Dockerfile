@@ -3,7 +3,7 @@ FROM node:4.4.5
 ENV LAST_UPDATED 20160605T165400
 
 # Copy source code
-COPY . /app
+COPY . ./
 
 # Change working directory
 WORKDIR /app
