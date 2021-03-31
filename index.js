@@ -15,6 +15,10 @@ mongoose.connect(MONGODB_URI,
   console.log('Connect to database success');
 });
 
+mongoose.connection.on('error', err => {
+  throw 'failed connect to MongoDB';
+});
+
 // Middlewares
 app.use(express.json());
 app.use(morgan('dev'));
